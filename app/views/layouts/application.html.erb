@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Workspace</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <section>
+      <h1>MUSIC DATABASE</h1>
+      <h2>ADD A SONG</h2>
+      <p class="status"></p>
+      <div class="errors"></div>
+      <%= form_for(@music) do |f| %>
+        <div class="field">
+          <%= f.label :title %><br>
+          <%= f.text_field :title %>
+        </div>
+        <div class="field">
+          <%= f.label :artist %><br>
+          <%= f.text_field :artist %>
+        </div>
+        <div class="field">
+          <%= f.label :year %><br>
+          <%= f.text_field :year %>
+        </div>
+        <div class="field">
+          <%= f.label :genre %><br>
+          <%= f.text_field :genre %>
+        </div>
+        <div class="actions">
+          <%= f.submit %>
+        </div>
+      <% end %>
+      <!--FORM-->
+      <form id="music_list">
+         <div class="tbody">
+         <% @musics.each do |music| %>
+            <div class="tr">
+                <div class="form-group title-container">
+                  <label>Title</label>
+                  <input type="" class="form-control" id="title">
+                  <%= music.title %>
+                </div>
+                <div class="form-group artist-container">
+                  <label>Artist</label>
+                  <input type="" class="form-control" id="artist">
+                  <%= music.artist %>
+                </div>
+                <div class="form-group year-container">
+                  <label>Year</label>
+                  <input type="" class="form-control" id="year">
+                  <%= music.year %>
+                </div>
+                <div class="form-group genre-container">
+                  <label>Genre</label>
+                  <input type="" class="form-control" id="genre">
+                  <%= music.genre %>
+                </div>
+                <button type="submit" class="btn btn-primary submit-btn">Add song</button>
+                <%= link_to 'x', music, method: :delete, class: 'music_delete' %>
+            </div>
+        </div>
+      </form>
+      <h2>List of Songs</h2>
+      <p class="no_music">No music yet... please, add some!</p>
+    </section>
+<%= yield %>
+<script type="text/javascript" src="../javascripts/home.js"></script>
+</body>
+</html>
